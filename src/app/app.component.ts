@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFirestore } from 'angularfire2/firestore';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,8 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class AppComponent {
   title = 'app works!';
+  items: Observable<any[]>;
   constructor(db: AngularFirestore) {
-
+    this.items = db.collection('items').valueChanges();
   }
 }
